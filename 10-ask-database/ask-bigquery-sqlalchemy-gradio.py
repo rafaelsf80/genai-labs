@@ -1,0 +1,129 @@
+""" Ask BigQuery in natural language using text-bison. Gradio demo
+    Note usage a SQLAlchemy library to build a BigQuery engine. Alternatively to SQLAlchemy, you could use the GCP python sdk instead
+    Note usage of chains (SQLDatabaseChain), but no agents
+"""
+
+import gradio as gr
+
+from langchain import SQLDatabase, SQLDatabaseChain
+
+from langchain.llms import VertexAI
+from langchain import PromptTemplate, LLMChain
+
+from sqlalchemy import *
+from sqlalchemy.engine import create_engine
+from sqlalchemy.schema import *
+
+
+project_id = "argolis-rafaelsanchez-ml-dev"  
+location = "us-central1"  
+dataset_id = 'ml_datasets_fitbit_uscentral1' # Fitbit public dataset from Kaggle
+table_name1 = 'user_activity' 
+table_name2 = 'user_location' 
+table_name3 = 'user_weight_final' 
+
+table_names = (table_name1,table_name2,table_name3)
+
+table_uri = f"bigquery://{project_id}/{dataset_id}"
+engine = create_engine(f"bigquery://{project_id}/{dataset_id}")
+
+# Testing all tables
+query=f"""SELECT * FROM {project_id}.{dataset_id}.{table_name1}"""
+engine.execute(query).first()
+
+query=f"""SELECT * FROM {project_id}.{dataset_id}.{table_name2}"""
+engine.execute(query).first()
+
+query=f"""SELECT * FROM {project_id}.{dataset_id}.{table_name3}"""
+engine.execute(query).first()
+
+# Text model instance integrated with langChain
+llm = VertexAI(
+    model_name='text-bison@001',
+    max_output_tokens=1024,
+    temperature=0.1,
+    top_p=0.8,
+    top_k=40,
+    verbose=True,
+)
+
+def bq_qna(question):
+  #create SQLDatabase instance from BQ engine
+  db = SQLDatabase(engine=engine,metadata=MetaData(bind=engine),include_tables=[x for x in table_names])
+
+  #create SQL DB Chain with the initialized LLM and above SQLDB instance
+  db_chain = SQLDatabaseChain.from_llm(llm, db, verbose=True, return_intermediate_steps=True)
+
+  #Define prompt for BigQuery SQL
+  _googlesql_prompt = """You are a GoogleSQL expert. Given an input question, first create a syntactically correct GoogleSQL query to run, then look at the results of the query and return the answer to the input question.
+  Unless the user specifies in the question a specific number of examples to obtain, query for at most {top_k} results using the LIMIT clause as per GoogleSQL. You can order the results to return the most informative data in the database.
+  Never query for all columns from a table. You must query only the columns that are needed to answer the question. Wrap each column name in backticks (`) to denote them as delimited identifiers.
+  Pay attention to use only the column names you can see in the tables below. Be careful to not query for columns that do not exist. Also, pay attention to which column is in which table.
+  Use the following format:
+  Question: "Question here"
+  SQLQuery: "SQL Query to run"
+  SQLResult: "Result of the SQLQuery"
+  Answer: "Final answer here"
+  Only use the following tables:
+  {table_info}
+
+  If someone asks for aggregation on a STRING data type column, then CAST column as NUMERIC before you do the aggregation.
+
+  If someone asks for specific month, use ActivityDate between current month's start date and current month's end date
+
+  If someone asks for column names in the table, use the following format:
+  SELECT column_name
+  FROM `{project_id}.{dataset_id}`.INFORMATION_SCHEMA.COLUMNS
+  WHERE table_name in {table_info}
+
+  Question: {input}"""
+
+  GOOGLESQL_PROMPT = PromptTemplate(
+      input_variables=["input", "table_info", "top_k", "project_id", "dataset_id"],
+      template=_googlesql_prompt,
+  )
+
+  #passing question to the prompt template
+  final_prompt = GOOGLESQL_PROMPT.format(input=question, project_id =project_id, dataset_id=dataset_id, table_info=table_names, top_k=10000)
+
+  #pass final prompt to SQL Chain
+  output = db_chain(final_prompt)
+  print(output)
+
+  return output['result'], output['intermediate_steps'][1]
+
+
+with gr.Blocks() as demo:
+    gr.Markdown(
+    """
+    ## Ask BiqQuery
+
+    This demo is to showcase answering questions on a tabular data available in Big Query using Vertex PALM LLM & Langchain.
+
+    This demo uses a sample public dataset from Kaggle (https://www.kaggle.com/datasets/arashnic/fitbit)
+
+    ### Sample Inputs:
+    1. what is the minimum number of steps taken by user 1644430081 ?
+    2. what is the average steps covered by 1644430081?
+    3. what is the highest number of Calories burnt in the month of May by 1644430081 ?
+    4. find all users that have made more than 12000 totalsteps and are located in Chicago.
+
+
+    ### Enter a search query...
+
+    """)
+    with gr.Row():
+      with gr.Column():
+        input_text = gr.Textbox(label="Question", placeholder="what is the minimum steps taken by 1644430081")
+
+    with gr.Row():
+      generate = gr.Button("Ask BigQuery")
+
+    with gr.Row():
+      label2 = gr.Textbox(label="Output")
+    with gr.Row():
+      label3 = gr.Textbox(label="SQL query generated by LLM")
+
+    generate.click(bq_qna,input_text, [label2, label3])
+    
+demo.launch(share=False, debug=False)
