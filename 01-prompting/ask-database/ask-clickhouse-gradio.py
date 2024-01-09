@@ -1,0 +1,136 @@
+""" PENDING **** NOT WORKING YET *****
+    Ask Clickhouse in natural language using text-bison. Gradio demo
+    ClickHouse is an open-source data warehouse (with commercial cloud offerings) that can be installed in GCE
+    Note usage a SQLAlchemy connector to build a ClickHouse engine. Alternatively to SQLAlchemy, you could use the python driver instead
+    https://pypi.org/project/clickhouse-sqlalchemy/
+    https://clickhouse-sqlalchemy.readthedocs.io/en/latest/features.html
+    Note usage of chains (SQLDatabaseChain), but no agents
+"""
+
+import gradio as gr
+
+from langchain import SQLDatabase, SQLDatabaseChain
+
+from langchain.llms import VertexAI
+from langchain import PromptTemplate, LLMChain
+
+from sqlalchemy import *
+from sqlalchemy.engine import create_engine
+from sqlalchemy.schema import *
+
+
+project_id = "argolis-rafaelsanchez-ml-dev"  
+location = "us-central1"  
+
+
+from sqlalchemy import create_engine, Column, MetaData
+
+from clickhouse_sqlalchemy import (
+    Table, make_session, get_declarative_base, types, engines
+)
+
+uri = 'clickhouse+native://localhost/default'
+
+engine = create_engine(uri)
+session = make_session(engine)
+metadata = MetaData(bind=engine)
+
+Base = get_declarative_base(metadata=metadata)
+
+class Rate(Base):
+    day = Column(types.Date, primary_key=True)
+    value = Column(types.Int32)
+
+    __table_args__ = (
+        engines.Memory(),
+    )
+
+
+# Text model instance integrated with langChain
+llm = VertexAI(
+    model_name='text-bison@001',
+    max_output_tokens=1024,
+    temperature=0.1,
+    top_p=0.8,
+    top_k=40,
+    verbose=True,
+)
+
+
+def clickhouse_qna(question):
+  #create SQLDatabase instance from BQ engine
+  db = SQLDatabase(engine=engine,metadata=MetaData(bind=engine),include_tables=[x for x in table_names])
+
+  #create SQL DB Chain with the initialized LLM and above SQLDB instance
+  db_chain = SQLDatabaseChain.from_llm(llm, db, verbose=True, return_intermediate_steps=True)
+
+  #Define prompt for ClickHouse SQL
+  _sql_prompt = """You are a SQL expert. Given an input question, first create a syntactically correct SQL query to run, then look at the results of the query and return the answer to the input question.
+  Unless the user specifies in the question a specific number of examples to obtain, query for at most {top_k} results using the LIMIT clause as per GoogleSQL. You can order the results to return the most informative data in the database.
+  Never query for all columns from a table. You must query only the columns that are needed to answer the question. Wrap each column name in backticks (`) to denote them as delimited identifiers.
+  Pay attention to use only the column names you can see in the tables below. Be careful to not query for columns that do not exist. Also, pay attention to which column is in which table.
+  Use the following format:
+  Question: "Question here"
+  SQLQuery: "SQL Query to run"
+  SQLResult: "Result of the SQLQuery"
+  Answer: "Final answer here"
+  Only use the following tables:
+  {table_info}
+
+  If someone asks for aggregation on a STRING data type column, then CAST column as NUMERIC before you do the aggregation.
+
+  If someone asks for specific month, use ActivityDate between current month's start date and current month's end date
+
+  If someone asks for column names in the table, use the following format:
+  SELECT column_name
+  FROM `{project_id}.{dataset_id}`.INFORMATION_SCHEMA.COLUMNS
+  WHERE table_name in {table_info}
+
+  Question: {input}"""
+
+  SQL_PROMPT = PromptTemplate(
+      input_variables=["input", "table_info", "top_k", "project_id", "dataset_id"],
+      template=_sql_prompt,
+  )
+
+  #passing question to the prompt template
+  final_prompt = SQL_PROMPT.format(input=question, project_id =project_id, dataset_id=dataset_id, table_info=table_names, top_k=10000)
+
+  #pass final prompt to SQL Chain
+  output = db_chain(final_prompt)
+
+  return output['result'], output['intermediate_steps'][1]
+
+
+with gr.Blocks() as demo:
+    gr.Markdown(
+    """
+    ## Ask BiqQuery
+
+    This demo is to showcase answering questions on a tabular data available in Big Query using Vertex PALM LLM & Langchain.
+
+    This demo uses a sample public dataset from Kaggle (https://www.kaggle.com/datasets/arashnic/fitbit)
+
+    ### Sample Inputs:
+    1. what is the minimum number of steps taken by user 1644430081 ?
+    2. what is the average steps covered by 1644430081?
+    3. what is the highest number of Calories burnt in the month of May by 1644430081 ?
+
+    ### Enter a search query...
+
+    """)
+    with gr.Row():
+      with gr.Column():
+        input_text = gr.Textbox(label="Question", placeholder="what is the minimum steps taken by 1644430081")
+
+    with gr.Row():
+      generate = gr.Button("Ask BigQuery")
+
+    with gr.Row():
+      label2 = gr.Textbox(label="Output")
+    with gr.Row():
+      label3 = gr.Textbox(label="SQL query generated by LLM")
+
+    generate.click(bq_qna,input_text, [label2, label3])
+    
+demo.launch(share=False, debug=False)
