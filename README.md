@@ -5,7 +5,7 @@ Some examples can be executed in Colab, while others would require Vertex AI.
 Setup and authentication instructions of Vertex SDK are available [here](https://cloud.google.com/vertex-ai/docs/start/client-libraries). Make sure you install [latest version of the Vertex SDK](https://pypi.org/project/google-cloud-aiplatform/): `pip install google-cloud-aiplatform --upgrade`. Other dependencies may be required. Please, complete those steps before trying any of the labs below.
 
 
-## 01: Prompting
+## 01 Prompting
 
 * Lab1: Chain-of-Thought
 * Lab2: External tools (RAG)
@@ -32,17 +32,17 @@ pip install clickhouse-sqlalchemy --quiet
 ```
 
 
-## 02: Tuning
+## 02 Tuning
 
 PENDING
 
 
-## 03: AI infra
+## 03 AI infra
 
 PENDING
 
 
-## 04: Multimodality
+## 04 Multimodality
 
 PENDING
 
