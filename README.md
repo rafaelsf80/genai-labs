@@ -7,10 +7,11 @@ Setup and authentication instructions of Vertex SDK are available [here](https:/
 
 ## 01 Prompting
 
-* Lab1: Chain-of-Thought
-* Lab2: External tools (RAG)
-* Lab3: ReAct
-* Lab4: ReAct with LangChain 0.1.0 agents
+
+* Lab 01-1: [Chain-of-Thought](01-prompting/01-1-cot.ipynb)
+* Lab 01-2: [External tools (RAG)](01-prompting/01-2-external-tools.ipynb) 
+* Lab 01-3: [ReAct](01-prompting/01-3-react.ipynb)
+* Lab 01-4: [ReAct with LangChain 0.1.0 agents](01-prompting/01-4-langchain-react-agents.ipynb)
 * LangChain specific labs. [LangChain](https://python.langchain.com/docs/get_started/introduction.html) is an open-source tool that can orchestrate or integrate APIs (databases, documents, apps, ...) with LLMs. LangChain is **not** a tool for tuning models.
 * Ask Database labs: Ask BigQuery and [other databases](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain) in natural language.
 
@@ -39,12 +40,29 @@ PENDING
 
 ## 03 AI infra
 
-PENDING
+* Lab 03-1: [TPU Colab MNIST](03-ai-infra/03-1-tpu-mnist.ipynb)
+* Lab 03-2: [End-to-end Masked Language Modeling with BERT](03-ai-infra/03-2-tpu-bert.ipynb)
+* Lab 03-3: [JAX intro](03-ai-infra/03-3-jax.ipynb)
+* Lab 03-4: [KV cache](03-ai-infra/03-4-kvcache.ipynb)
+* Lab 03-5: [Ray intro](03-ai-infra/03-5-ray-train.ipynb)
+* Lab 03-6: [Ray tune](03-ai-infra/03-6-ray-tune.ipynb)
+
+Labs Distributed Training:
+
+1. Colab: [TensorFlow with GPU](https://colab.sandbox.google.com/notebooks/gpu.ipynb)
+2. Keras tutorial: [Multi-GPU distributed training with TensorFlow](https://keras.io/guides/distributed_training_with_tensorflow/)
+3. Keras tutorial: [Multi-GPU distributed training with JAX](https://keras.io/guides/distributed_training_with_jax/) 
+4. Keras tutorial: [Distributed training with Keras 3 tutorial](https://keras.io/guides/distribution/) shows model distribution, as well as data distribution.
 
 
 ## 04 Multimodality
 
-PENDING
+* Lab 04-1: [MNIST Deep Autoencoder](04-multimodal/04-1-intro-vae.ipynb)
+* Lab 04-2: [Convolutional Variational Autoencoders](04-multimodal/04-2-convolutional-vae.ipynb)
+* Lab 04-3: [Inference text-to-image](04-multimodal/04-3-inference-text2image.ipynb)
+* Lab 04-4: [Denoising Diffusion Implicit Models](04-multimodal/04-4-ddim-potion.ipynb) 
+* Lab 04-5: [GPT-4 for video and TTS API](04-multimodal/04-5-GPT-with-vision-for-video-understanding.ipynb) 
+* Lab 04-6: [LCM LoRA ](04-multimodal/04-6-lcm-lora-inference.ipynb)
 
 
 ## References
