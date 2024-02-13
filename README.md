@@ -7,12 +7,14 @@ Setup and authentication instructions of Vertex SDK are available [here](https:/
 
 ## 01 Prompting
 
-
 * Lab 01-1: [Chain-of-Thought](01-prompting/01-1-cot.ipynb)
 * Lab 01-2: [External tools (RAG)](01-prompting/01-2-external-tools.ipynb) 
 * Lab 01-3: [ReAct](01-prompting/01-3-react.ipynb)
-* Lab 01-4: [ReAct with LangChain 0.1.0 agents](01-prompting/01-4-langchain-react-agents.ipynb)
-* LangChain specific labs. [LangChain](https://python.langchain.com/docs/get_started/introduction.html) is an open-source tool that can orchestrate or integrate APIs (databases, documents, apps, ...) with LLMs. LangChain is **not** a tool for tuning models.
+* Lab 01-4: [LangChain intro](01-prompting/01-4-langchain.ipynb)
+* Lab 01-5: [LangChain 0.1.0 with ReAct and agents](01-prompting/01-5-langchain-react-agents.ipynb)
+* Lab 01-6: [Pandas AI](01-prompting/01-6-pandasai.ipynb)
+* LangChain specific labs. [LangChain](https://python.langchain.com/docs/get_started/introduction.html) is an open-source tool that can 
+orchestrate or integrate APIs (databases, documents, apps, ...) with LLMs. LangChain is **not** a tool for tuning models.
 * Ask Database labs: Ask BigQuery and [other databases](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain) in natural language.
 
 <img src="images/ask-bigquery-gradio.png" alt="ask-bigquery Gradio demo" width="300"/>
@@ -47,7 +49,7 @@ PENDING
 * Lab 03-5: [Ray intro](03-ai-infra/03-5-ray-train.ipynb)
 * Lab 03-6: [Ray tune](03-ai-infra/03-6-ray-tune.ipynb)
 
-Labs Distributed Training:
+Tutorials Distributed Training:
 
 1. Colab: [TensorFlow with GPU](https://colab.sandbox.google.com/notebooks/gpu.ipynb)
 2. Keras tutorial: [Multi-GPU distributed training with TensorFlow](https://keras.io/guides/distributed_training_with_tensorflow/)
