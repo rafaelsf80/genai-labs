@@ -2,7 +2,8 @@
 
 This repository contains code samples for **Generative AI**, including different use cases. 
 Some examples can be executed in Colab, while others would require Vertex AI.
-Setup and authentication instructions of Vertex SDK are available [here](https://cloud.google.com/vertex-ai/docs/start/client-libraries). Make sure you install [latest version of the Vertex SDK](https://pypi.org/project/google-cloud-aiplatform/): `pip install google-cloud-aiplatform --upgrade`. Other dependencies may be required. Please, complete those steps before trying any of the labs below.
+
+Setup and authentication instructions of Vertex SDK are available [here](https://cloud.google.com/vertex-ai/docs/start/client-libraries). Make sure you install [latest version of the Vertex SDK](https://pypi.org/project/google-cloud-aiplatform/): `pip install google-cloud-aiplatform --upgrade`. Other dependencies may be required. Those are indicated in the code.
 
 
 ## 01 Prompting
@@ -13,8 +14,7 @@ Setup and authentication instructions of Vertex SDK are available [here](https:/
 * Lab 01-4: [LangChain intro](01-prompting/01-4-langchain.ipynb)
 * Lab 01-5: [LangChain 0.1.0 with ReAct and agents](01-prompting/01-5-langchain-react-agents.ipynb)
 * Lab 01-6: [Pandas AI](01-prompting/01-6-pandasai.ipynb)
-* LangChain specific labs. [LangChain](https://python.langchain.com/docs/get_started/introduction.html) is an open-source tool that can 
-orchestrate or integrate APIs (databases, documents, apps, ...) with LLMs. LangChain is **not** a tool for tuning models.
+* LangChain specific labs. [LangChain](https://python.langchain.com/docs/get_started/introduction.html) is an open-source tool that can orchestrate or integrate APIs (databases, documents, apps, ...) with LLMs. LangChain is **not** a tool for tuning models.
 * Ask Database labs: Ask BigQuery and [other databases](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain) in natural language.
 
 <img src="images/ask-bigquery-gradio.png" alt="ask-bigquery Gradio demo" width="300"/>
@@ -63,8 +63,8 @@ Tutorials Distributed Training:
 * Lab 04-2: [Convolutional Variational Autoencoders](04-multimodal/04-2-convolutional-vae.ipynb)
 * Lab 04-3: [Inference text-to-image](04-multimodal/04-3-inference-text2image.ipynb)
 * Lab 04-4: [Denoising Diffusion Implicit Models](04-multimodal/04-4-ddim-potion.ipynb) 
-* Lab 04-5: [GPT-4 for video and TTS API](04-multimodal/04-5-GPT-with-vision-for-video-understanding.ipynb) 
-* Lab 04-6: [LCM LoRA ](04-multimodal/04-6-lcm-lora-inference.ipynb)
+* Lab 04-5: [GPT-4 for video and TTS API](04-multimodal/04-5-gpt4-with-vision-for-video-understanding.ipynb) 
+* Lab 04-6: [LCM LoRA](04-multimodal/04-6-lcm-lora-inference.ipynb)
 
 
 ## References
@@ -77,4 +77,4 @@ Tutorials Distributed Training:
 
 `[4]` Google Cloud blog post: [Building AI-powered apps on Google Cloud databases using pgvector, LLMs and LangChain](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain)
 
-`[4]` Towards Data Science article: [LangChain: Develop applications powered by Language Models](https://towardsdatascience.com/develop-applications-powered-by-language-models-with-langchain-d2f7a1d1ad1a)     
+`[5]` Towards Data Science article: [LangChain: Develop applications powered by Language Models](https://towardsdatascience.com/develop-applications-powered-by-language-models-with-langchain-d2f7a1d1ad1a)     
