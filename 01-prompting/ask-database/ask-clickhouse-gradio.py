@@ -19,7 +19,7 @@ from sqlalchemy.engine import create_engine
 from sqlalchemy.schema import *
 
 
-project_id = "argolis-rafaelsanchez-ml-dev"  
+project_id = "YOUR_PROJECT_ID"  # <--- CHANGE THIS
 location = "us-central1"  
 
 

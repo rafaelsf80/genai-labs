@@ -1,4 +1,4 @@
-""" Tunes LLM model with public Stackoverflow data. 
+""" Tunes LLM model with public StackOverflow data. 
     Run "python3 get_data.py" first to get input data and then upload the JSONL file to GCS (TRAINING_DATA_URI)
 """
 
@@ -18,10 +18,10 @@ def generate_uuid(length: int = 8) -> str:
 UUID = generate_uuid()
 
 MODEL_NAME = f"genai-workshop-tuned-model-{UUID}"
-PROJECT_ID = "argolis-rafaelsanchez-ml-dev"   # <---- CHANGE THIS
-BUCKET_NAME = "argolis-vertex-uscentral1"     # <---- CHANGE THIS
+PROJECT_ID = "YOUR_PROJECT_ID"   # <---- CHANGE THIS
+BUCKET_NAME = "YOUR_BUCKET "     # <---- CHANGE THIS. MUST BE SAME REGION
 BUCKET_URI = f"gs://{BUCKET_NAME}"
-REGION = "us-central1"                        # <---- CHANGE THIS
+REGION = "us-central1"           # <---- CHANGE THIS (OPTIONAL)
 TRAINING_DATA_URI = f"{BUCKET_URI}/training_data_stack_overflow_python_qa.jsonl"  # <---- CHANGE THIS
 
 

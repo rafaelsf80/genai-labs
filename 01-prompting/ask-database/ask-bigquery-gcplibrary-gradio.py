@@ -12,7 +12,7 @@ from langchain import PromptTemplate
 
 from google.cloud import bigquery
 
-project_id = "argolis-rafaelsanchez-ml-dev"  
+project_id = "YOUR_PROJECT_ID"  # <--- CHANGE THIS
 location = "us-central1"  
 dataset_id = 'ml_datasets_fitbit_uscentral1' # Fitbit public dataset from Kaggle
 table_name1 = 'user_activity' 

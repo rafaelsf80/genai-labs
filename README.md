@@ -37,13 +37,17 @@ pip install clickhouse-sqlalchemy --quiet
 
 ## 02 Tuning
 
-PENDING
+* Lab 02-1: [Full-fine-tuning of T5-small with BillSum dataset](02-tuning/02-1-t5small-billsum.ipynb)
+* Lab 02-2: [Comparison of quantization methods: NF4, GPTQ, GGUF, AWQ](02-tuning/02-2-gptq-gguf-awq.ipynb)
+* Lab 02-3: [PEFT tuning of Phi-2 with DialogSum dataset](02-tuning/02-3-phi2-dialogsum-qlora.ipynb)
+* Lab 02-4: [PEFT tuning of Mistral-7B with custom dataset](02-tuning/02-4-mistral-custom-qlora.ipynb)
+* Lab 02-5: [RLHF of FLAN-T5 with PPO  to Generate Less-Toxic Summaries](02-tuning/02-5-rlhf-flant5-ppo.ipynb)
 
 
 ## 03 AI infra
 
-* Lab 03-1: [TPU Colab MNIST](03-ai-infra/03-1-tpu-mnist.ipynb)
-* Lab 03-2: [End-to-end Masked Language Modeling with BERT](03-ai-infra/03-2-tpu-bert.ipynb)
+* Lab 03-1: [TPU Xception with flowers dataset](03-ai-infra/03-1-tpu-xception-flowers.ipynb)
+* Lab 03-2: [TPU BERT pre-training and fine-tuning with custom dataset](03-ai-infra/03-2-tpu-bert-custom.ipynb)
 * Lab 03-3: [JAX intro](03-ai-infra/03-3-jax.ipynb)
 * Lab 03-4: [KV cache](03-ai-infra/03-4-kvcache.ipynb)
 * Lab 03-5: [Ray intro](03-ai-infra/03-5-ray-train.ipynb)
@@ -67,14 +71,16 @@ Tutorials Distributed Training:
 * Lab 04-6: [LCM LoRA](04-multimodal/04-6-lcm-lora-inference.ipynb)
 
 
+## 05 Retrieval Augmented Generation (RAG)
+
+* Lab 05-1: [Ask large docs](https://medium.com/google-cloud/generative-ai-q-a-with-semantic-answering-on-large-scanned-documents-with-vertex-ai-chroma-7f4806a3cb71)
+* Lab 05-2: [Ask small docs](https://github.com/rafaelsf80/genai-vertex-documents-synchronous)
+
+
 ## References
 
 `[1]` SDK documentation: [Generative AI client libraries - Vertex AI](https://cloud.google.com/vertex-ai/docs/start/client-libraries)
 
-`[2]` Github repo: [Q&A on unstructured documents with Vertex AI LLM and Document AI OCR](https://github.com/rafaelsf80/genai-vertex-documents-synchronous)
+`[2]` Google Cloud blog post: [Building AI-powered apps on Google Cloud databases using pgvector, LLMs and LangChain](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain)
 
-`[3]` Medium post: [Generative AI — Q&A with semantic answering on large scanned documents with Vertex AI, Chroma, LangChain and Document AI OCR](https://medium.com/google-cloud/generative-ai-q-a-with-semantic-answering-on-large-scanned-documents-with-vertex-ai-chroma-7f4806a3cb71) 
-
-`[4]` Google Cloud blog post: [Building AI-powered apps on Google Cloud databases using pgvector, LLMs and LangChain](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain)
-
-`[5]` Towards Data Science article: [LangChain: Develop applications powered by Language Models](https://towardsdatascience.com/develop-applications-powered-by-language-models-with-langchain-d2f7a1d1ad1a)     
+`[3]` Towards Data Science article: [LangChain: Develop applications powered by Language Models](https://towardsdatascience.com/develop-applications-powered-by-language-models-with-langchain-d2f7a1d1ad1a)     

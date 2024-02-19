@@ -13,7 +13,7 @@ def ocr_parser(file):
     FILE_PATH = file # Getting filename, since file type is tempfile._TemporaryFileWrapper
     MIME_TYPE = "application/pdf"
 
-    PROJECT_ID = "argolis-rafaelsanchez-ml-dev"
+    PROJECT_ID = "YOUR_PROJECT_ID" # <---- CHANGE THIS
     LOCATION = "eu"
     PROCESSOR_ID = "a99d341e2c8c2e1c" # ocr processor
 
