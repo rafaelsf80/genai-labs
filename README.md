@@ -69,6 +69,7 @@ Tutorials Distributed Training:
 * Lab 04-4: [Denoising Diffusion Implicit Models](04-multimodal/04-4-ddim-potion.ipynb) 
 * Lab 04-5: [GPT-4 for video and TTS API](04-multimodal/04-5-gpt4-with-vision-for-video-understanding.ipynb) 
 * Lab 04-6: [LCM LoRA](04-multimodal/04-6-lcm-lora-inference.ipynb)
+* Lab 04-7: [Hugging Face diffusers library](04-multimodal/04-7-huggingface-diffusers-intro.ipynb)
 
 
 ## 05 Retrieval Augmented Generation (RAG)
