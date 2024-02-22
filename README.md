@@ -1,7 +1,9 @@
 # Generative AI Labs
 
 This repository contains code samples for **Generative AI**, including different use cases. 
-Some examples can be executed in Colab, while others would require Vertex AI.
+Some examples can be executed in Colab (with GPU mandatory in some), while others would require Vertex AI.
+
+> This repo contains some exercises to be completed. In some files, code may contain some `TODO` to be completed/filled. The solution is not included in this repo. 
 
 Setup and authentication instructions of Vertex SDK are available [here](https://cloud.google.com/vertex-ai/docs/start/client-libraries). Make sure you install [latest version of the Vertex SDK](https://pypi.org/project/google-cloud-aiplatform/): `pip install google-cloud-aiplatform --upgrade`. Other dependencies may be required. Those are indicated in the code.
 
