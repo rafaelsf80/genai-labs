@@ -78,6 +78,7 @@ Tutorials Distributed Training:
 
 * Lab 05-1: [Ask large docs](https://medium.com/google-cloud/generative-ai-q-a-with-semantic-answering-on-large-scanned-documents-with-vertex-ai-chroma-7f4806a3cb71)
 * Lab 05-2: [Ask small docs](https://github.com/rafaelsf80/genai-vertex-documents-synchronous)
+* Lab 05-3: [Advanced RAG](05-rag/advanced-rag.md)
 
 
 ## References
