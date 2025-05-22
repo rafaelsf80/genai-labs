@@ -16,8 +16,8 @@ Setup and authentication instructions of Vertex SDK are available [here](https:/
 * Lab 01-4: [LangChain intro](01-prompting/01-4-langchain.ipynb)
 * Lab 01-5: [LangChain 0.1.0 with ReAct and agents](01-prompting/01-5-langchain-react-agents.ipynb)
 * Lab 01-6: [Pandas AI](01-prompting/01-6-pandasai.ipynb)
-* LangChain specific labs. [LangChain](https://python.langchain.com/docs/get_started/introduction.html) is an open-source tool that can orchestrate or integrate APIs (databases, documents, apps, ...) with LLMs. LangChain is **not** a tool for tuning models.
-* Ask Database labs: Ask BigQuery and [other databases](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain) in natural language.
+* OBSOLETE: LangChain specific labs. [LangChain](https://python.langchain.com/docs/get_started/introduction.html) is an open-source tool that can orchestrate or integrate APIs (databases, documents, apps, ...) with LLMs. LangChain is **not** a tool for tuning models.
+* OBSOLETE: Ask Database labs: Ask BigQuery and [other databases](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain) in natural language.
 
 <img src="images/ask-bigquery-gradio.png" alt="ask-bigquery Gradio demo" width="300"/>
 
@@ -26,7 +26,7 @@ Notes:
 * Make sure your query is not empty, otherwise you will get unexpected non-workable behaviour. You need to fill the input prompt.
 
 ```sh
-pip install langchain==0.0.191 --quiet
+pip install langchain --quiet
 pip install google-cloud-core --quiet
 pip install gradio --quiet
 
@@ -41,7 +41,7 @@ pip install clickhouse-sqlalchemy --quiet
 
 * Lab 02-1: [Full-fine-tuning of T5-small with BillSum dataset](02-tuning/02-1-t5small-billsum.ipynb)
 * Lab 02-2: [Comparison of quantization methods: NF4, GPTQ, GGUF, AWQ](02-tuning/02-2-gptq-gguf-awq.ipynb)
-* Lab 02-3: [PEFT tuning of Phi-2 with DialogSum dataset](02-tuning/02-3-phi2-dialogsum-qlora.ipynb)
+* Lab 02-3: [PEFT tuning of Phi-4 with FineTome dataset](02-tuning/02-3-phi4-finetome.ipynb)
 * Lab 02-4: [PEFT tuning of Mistral-7B with custom dataset](02-tuning/02-4-mistral-custom-qlora.ipynb)
 * Lab 02-5: [RLHF of FLAN-T5 with PPO  to Generate Less-Toxic Summaries](02-tuning/02-5-rlhf-flant5-ppo.ipynb)
 
