@@ -14,7 +14,7 @@ Setup and authentication instructions of Vertex SDK are available [here](https:/
 * Lab 01-2: [External tools (RAG)](01-prompting/01-2-external-tools.ipynb) 
 * Lab 01-3: [ReAct](01-prompting/01-3-react.ipynb)
 * Lab 01-4: [LangChain intro](01-prompting/01-4-langchain.ipynb)
-* Lab 01-5: [LangChain 0.1.0 with ReAct and agents](01-prompting/01-5-langchain-react-agents.ipynb)
+* Lab 01-5: [LangGraph ReAct agents](01-prompting/01-5-langgraph-react-agents.ipynb)
 * Lab 01-6: [Pandas AI](01-prompting/01-6-pandasai.ipynb)
 * OBSOLETE: LangChain specific labs. [LangChain](https://python.langchain.com/docs/get_started/introduction.html) is an open-source tool that can orchestrate or integrate APIs (databases, documents, apps, ...) with LLMs. LangChain is **not** a tool for tuning models.
 * OBSOLETE: Ask Database labs: Ask BigQuery and [other databases](https://cloud.google.com/blog/products/data-analytics/building-ai-powered-apps-on-google-cloud-databases-using-pgvector-llms-and-langchain) in natural language.
